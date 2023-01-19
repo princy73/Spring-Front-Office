@@ -141,7 +141,7 @@ public class Client {
 
         try {
             con = DBAConnection.connect();
-            ps = con.prepareStatement("select id from Client where emailclients = ? and mdpclients = ?");
+            ps = con.prepareStatement("select id from Clients where emailclients = ? and mdpclients = ?");
 
             ps.setString(1, this.getEmail());
             ps.setString(2, this.getMdp());
