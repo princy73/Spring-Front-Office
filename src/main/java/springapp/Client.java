@@ -29,7 +29,14 @@ public class Client {
         this.budget = budget;
         this.demande = demande;
     }
-
+    public Client( String nom, String prenom, String mdp, String email, float budget, int demande) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mdp = mdp;
+        this.email = email;
+        this.budget = budget;
+        this.demande = demande;
+    }
     
     public Client(String mdp, String email) {
         this.mdp = mdp;
@@ -190,5 +197,28 @@ public class Client {
             con.close();
         }
         return manova;
+    }
+
+    public int Inscrisption () throws Exception{
+        Connection con = null;
+        int mapiditra = 0;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            con = DBAConnection.connect();
+            ps = con.prepareStatement("insert into Clients(nomclients,prenomclients,mdpclients,emailclients, budget) values(?,?,?,?,?)");
+            ps.setString(1, this.getNom());
+            ps.setString(2, this.getPrenom());
+            ps.setString(3, this.getMdp());
+            ps.setString(4, this.getEmail());
+            ps.setFloat(5, this.getBudget());
+
+            mapiditra = ps.executeUpdate();    
+        } catch (Exception ex) {
+            throw ex;
+        }finally{
+            con.close();
+        }
+        return mapiditra;
     }
 }

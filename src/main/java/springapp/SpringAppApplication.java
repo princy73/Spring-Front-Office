@@ -28,8 +28,7 @@ public class SpringAppApplication {
 	public int Login(String email, String mdp) throws SQLException {
 		Client c = new Client();
 		c.setEmail(email);
-		c.setMdp(mdp);
-		
+		c.setMdp(mdp);		
 		return c.Login();
 	}
 
@@ -40,6 +39,13 @@ public class SpringAppApplication {
 		cl.setIdClient(idClient);
 		return cl.RechargerCompte();
 
+	}
+
+	@PostMapping("/inscription")
+	@CrossOrigin
+	public int Inscrisption() throws Exception{
+		Client c = new Client();
+		return c.Inscrisption();
 	}
 
 }
