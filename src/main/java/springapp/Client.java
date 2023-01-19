@@ -161,4 +161,27 @@ public class Client {
         }return 0;
 
     }
+
+    public int RechargerCompte() throws Exception{
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        int manova = 0;
+
+        try {
+            con = DBAConnection.connect();
+            ps = con.prepareStatement("update clients set demande = ? where id = ? ");
+            ps.setFloat(1, this.getDemande());
+            ps.setInt(2, this.getIdClient());
+
+            manova = ps.executeUpdate();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            throw e;
+        } finally {
+            ps.close();
+            con.close();
+        }
+        return manova;
+    }
 }

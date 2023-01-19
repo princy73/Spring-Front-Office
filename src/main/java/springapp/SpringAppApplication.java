@@ -31,6 +31,15 @@ public class SpringAppApplication {
 		c.setMdp(mdp);
 		
 		return c.Login();
+	}
+
+	@PostMapping("/updateDemande")
+	@CrossOrigin
+	public int RechargerCompte (int idClient) throws Exception{
+		Client cl = new Client();
+		cl.setIdClient(idClient);
+		return cl.RechargerCompte();
 
 	}
+
 }
