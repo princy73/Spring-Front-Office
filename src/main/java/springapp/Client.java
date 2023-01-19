@@ -30,6 +30,14 @@ public class Client {
         this.demande = demande;
     }
 
+    
+    public Client(String mdp, String email) {
+        this.mdp = mdp;
+        this.email = email;
+
+    }
+
+
     public Integer getIdClient() {
         return this.idClient;
     }
@@ -120,7 +128,7 @@ public class Client {
         setDemande(demande);
         return this;
     }
-
+    
     @Override
     public String toString() {
         return "{" +
@@ -138,7 +146,7 @@ public class Client {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-
+        int idClient = 0;
         try {
             con = DBAConnection.connect();
             ps = con.prepareStatement("select id from Clients where emailclients = ? and mdpclients = ?");
@@ -148,7 +156,7 @@ public class Client {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                setIdClient(rs.getInt("id"));
+                idClient =  rs.getInt("id");
             }
         } catch (Exception e) {
             // TODO: handle exception
@@ -156,9 +164,8 @@ public class Client {
             rs.close();
             ps.close();
             con.close();
-        }if(getIdClient()!=null){
-            return 1;
-        }return 0;
+        }
+        return idClient;
 
     }
 
