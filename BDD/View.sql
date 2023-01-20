@@ -17,3 +17,10 @@ join typeproduit t on t.id = p.idtypeproduit
 join categories c on c.id = t.idcategories 
 where e.statut  >0 group by  nomcategor order by argentgenere desc ;
 
+create or replace v_mesencheres
+select idclient, offre, datet  ,idproduit, t.nomtypep
+from enchereproduit e 
+join produit p on p.id = e.idproduit 
+join typeproduit t on t.id = p.idtypeproduit 
+join categories c on c.id = t.idcategories 
+where e.statut = 0 ;
