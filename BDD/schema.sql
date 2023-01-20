@@ -42,10 +42,12 @@ CREATE TABLE Produit(
     descriptions VARCHAR(255),
     image text,
     prixminimum float,
-    statut int 
+    statut int,
+    idProprietaire int 
 );
 
 ALTER TABLE EnchereProduit ADD FOREIGN KEY (Idclient) REFERENCES Clients(Id);
 ALTER TABLE EnchereProduit ADD FOREIGN KEY (IdProduit) REFERENCES Produit(Id);
 ALTER TABLE Produit ADD FOREIGN KEY (IdTypeProduit) REFERENCES TypeProduit(Id);
 ALTER TABLE TypeProduit ADD FOREIGN KEY (IdCategories) REFERENCES Categories(Id);
+ALTER TABLE Produit ADD FOREIGN KEY (idProprietaire) REFERENCES clients(Id);
