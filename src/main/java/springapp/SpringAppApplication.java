@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,8 +44,8 @@ public class SpringAppApplication {
 
 	@PostMapping("/inscription")
 	@CrossOrigin
-	public int Inscrisption() throws Exception{
-		Client c = new Client();
+	public int Inscrisption(@RequestBody Client c) throws Exception{
+ 
 		return c.Inscrisption();
 	}
 
